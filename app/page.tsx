@@ -1,20 +1,16 @@
 "use client";
 
-import Image from "next/image"
+import Image from "next/image";
 import { BsFillMoonStarsFill } from "react-icons/bs"
 import { AiFillLinkedin, AiFillGithub, AiFillMail } from "react-icons/ai";
 import { useState, useEffect, useRef } from "react"
-
+import Link from "next/link"; 
+  
 // Assets
 import design from "../public/design.png"
 import code from "../public/code.png"
 import consulting from "../public/consulting.png"
-import web1 from "../public/web1.png"
-import web2 from "../public/web2.png"
-import web3 from "../public/web3.png"
-import web4 from "../public/web4.png"
-import web5 from "../public/web5.png"
-import web6 from "../public/web6.png"
+
 
 // Component
 import Terminal from "../components/terminal";
@@ -51,6 +47,31 @@ export default function Home() {
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, []);
+
+
+  const projects = [
+  {
+    id: 1,
+    title: "GCP Serverless Storefront",
+    image: "/Shopping_website_GCP.png",
+    tech: ["Cloud Run", "Pub/Sub", "Cloud Build", "Terraform"],
+    github: "https://github.com/am29work"
+  },
+  {
+    id: 2,
+    title: "Azure Real-Time Analytics",
+    image: "/Azure_cloud_architecture_CI_CD_infographic.png",
+    tech: ["Azure Functions", "Service Bus", "Cosmos DB", "DevOps"],
+    github: "https://github.com/am29work"
+  },
+  {
+    id: 3,
+    title: "AWS DevSecOps Netflix Clone",
+    image: "/netflix_ci_cd.png",
+    tech: ["EKS", "Terraform", "Docker", "Jenkins"],
+    github: "https://github.com/am29work"
+  }
+];
 
   return (
     <div className={darkMode ? "dark" : ""}>
@@ -159,13 +180,45 @@ export default function Home() {
             </button>
 
             <div id="slider-container" className="flex gap-8 py-10 overflow-x-auto snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden px-6 md:px-20">
-              {[web1, web2, web3, web4, web5, web6].map((img, index) => (
-                <div key={index} className="min-w-[85%] md:min-w-[45%] snap-center shrink-0 group/card relative">
-                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl shadow-2xl border border-purple-500/10">
-                    <Image src={img} alt={`work-${index}`} fill className="object-cover transition-transform duration-700 group-hover/card:scale-110" />
-                  </div>
-                </div>
-              ))}
+              {projects.map((project) => (
+  <Link 
+    href={`/projects/${project.id}`} 
+    key={project.id} 
+    className="min-w-[85%] md:min-w-[45%] snap-center shrink-0 group/card relative cursor-pointer"
+  >
+    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl shadow-2xl border border-purple-500/10">
+      
+      {/* The Architecture Diagram */}
+      <Image 
+        src={project.image} 
+        alt={project.title} 
+        fill 
+        className="object-cover transition-all duration-700 group-hover/card:scale-110"
+      />
+
+      {/* NEXT LEVEL: The Dark Overlay Reveal */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover/card:opacity-100 transition-all duration-500 flex flex-col justify-end p-6">
+        
+        <h4 className="text-xl font-bold text-white mb-2 transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-500">
+          {project.title}
+        </h4>
+
+        {/* Tech Stack Badges */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.tech.map((t) => (
+            <span key={t} className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/50 text-yellow-500 font-bold shadow-[0_0_10px_rgba(234,179,8,0.3)]">
+              {t}
+            </span>
+          ))}
+        </div>
+
+        <p className="text-gray-300 text-sm mb-4 opacity-0 group-hover/card:opacity-100 delay-100 transition-opacity">
+          Click to view full architecture documentation & CI/CD logs.
+        </p>
+      </div>
+    </div>
+  </Link>
+))}
             </div>
 
             <button 
