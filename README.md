@@ -4,7 +4,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer-Motion-0055FF?style=flat&logo=framer)](https://www.framer.com/motion/)
 
-🔗 **[View Live Deployment](https://your-domain.com)**
+🔗 **[View Live Deployment](https://portfolio-app-767707914515.asia-south1.run.app/#hero)**
 
 ## 📋 Overview
 This repository contains the source code for a high-performance portfolio built with Next.js (App Router). It features state-persistent theme engines, layout-level animations via Framer Motion, and mobile-first, contrast-aware UI components. 
